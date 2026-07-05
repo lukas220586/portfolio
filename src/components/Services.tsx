@@ -35,7 +35,7 @@ const services = [
 ]
 
 export default function Services() {
-  const { t, locale } = useLanguage()
+  const { locale } = useLanguage()
   const { ref, visible } = useScrollReveal<HTMLDivElement>()
   const lang = locale === 'it' ? 'it' : 'en'
 

@@ -98,8 +98,8 @@ export default function ScrollExplosion() {
   const tRef = useRef(0)  // time
 
   useEffect(() => {
-    const c = canvasRef.current; if (!c) return
-    const ctx = c.getContext('2d'); if (!ctx) return
+    const c = canvasRef.current!
+    const ctx = c.getContext('2d')!
     let animId: number
     const mouse = { x:0, y:0 }
     let particles: Particle[] = []

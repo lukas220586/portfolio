@@ -21,13 +21,6 @@ const mat3 = {
   ],
 }
 
-function transform(v: number[], rx: number, ry: number, rz: number, tx = 0, ty = 0, tz = 0) {
-  let p = mat3.mul(mat3.rotateZ(rz), v)
-  p = mat3.mul(mat3.rotateX(rx), p)
-  p = mat3.mul(mat3.rotateY(ry), p)
-  return [p[0] + tx, p[1] + ty, p[2] + tz] as number[]
-}
-
 function project(x: number, y: number, z: number, w: number, h: number, fov = 800) {
   const d = fov + z
   if (d < 1) return { x: w/2, y: h/2, s: 0 }
@@ -36,19 +29,6 @@ function project(x: number, y: number, z: number, w: number, h: number, fov = 80
 }
 
 type Vert3 = [number, number, number]
-
-interface Box {
-  verts: Vert3[]
-  color: string
-  glow: number
-  size: number
-  label?: string
-}
-
-interface Trace {
-  points: number[][]
-  color: string
-}
 
 interface CompDef {
   pos: [number, number, number]
@@ -70,7 +50,7 @@ function makeBox(sx: number, sy: number, sz: number): Vert3[] {
   ]
 }
 
-function getFaces(v: Vert3[]): number[][] {
+function getFaces(_v: Vert3[]): number[][] {
   return [
     [0,1,2,3], [4,5,6,7], // front, back
     [0,1,5,4], [2,3,7,6], // top, bottom
@@ -155,7 +135,6 @@ export default function TechExplosion() {
     const onScroll = () => {
       const scrollY = window.scrollY
       const wh = window.innerHeight
-      const docH = document.documentElement.scrollHeight
       // progress goes 0→1 over first 2 viewport heights
       const raw = scrollY / (wh * 2)
       progressRef.current = Math.min(1, Math.max(0, raw))
