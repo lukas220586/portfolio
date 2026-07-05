@@ -21,8 +21,7 @@ export default function TechHero() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
+    const canvas = canvasRef.current!
     const ctx = canvas.getContext('2d')!
 
     let animId: number
@@ -48,7 +47,7 @@ export default function TechHero() {
     window.addEventListener('scroll', onScroll, { passive: true })
 
     function spawnTokens(count: number) {
-      const W = canvas.width, H = canvas.height
+      const W = canvas.width
       for (let i = 0; i < count; i++) {
         const domain = DOMAINS[Math.floor(Math.random() * DOMAINS.length)]
         const item = domain.items[Math.floor(Math.random() * domain.items.length)]

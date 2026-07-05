@@ -156,7 +156,6 @@ export default function TechExplosion() {
       const scrollY = window.scrollY
       const wh = window.innerHeight
       const docH = document.documentElement.scrollHeight
-      const maxScroll = docH - wh
       // progress goes 0→1 over first 2 viewport heights
       const raw = scrollY / (wh * 2)
       progressRef.current = Math.min(1, Math.max(0, raw))
@@ -177,7 +176,6 @@ export default function TechExplosion() {
 
       // ── PCB board ──
       const boardScale = 6
-      const explodeZ = progress * 18 // max 18 units separation
       const boardW = 7.5 * boardScale
       const boardH = 5.5 * boardScale
       const boardD = 0.3 * boardScale
@@ -195,7 +193,7 @@ export default function TechExplosion() {
 
       const boardTilt = progress * 0.3
 
-      const tf = (v: Vert3, dx = 0, dy = 0, dz = 0, tilt = 0, rr = rx) => {
+      const tf = (v: number[], dx = 0, dy = 0, dz = 0, rr = rx) => {
         let p = mat3.mul(mat3.rotateX(rr), v)
         p = mat3.mul(mat3.rotateY(ry), p)
         return [p[0] + dx, p[1] + dy, p[2] + dz + boardTilt * 10] as number[]
@@ -267,8 +265,6 @@ export default function TechExplosion() {
       }
 
       // ── components ──
-      const groups: { idx: number; c: CompDef; box: Vert3[]; prj: number[] }[][] = []
-
       for (let i = 0; i < compDefs.length; i++) {
         const c = compDefs[i]
         // disassembly offset per group
@@ -292,8 +288,8 @@ export default function TechExplosion() {
         const rotZ = c.rot[2] + progress * gOff * 0.2
 
         const transformed = box.map(v => {
-          let p = mat3.mul(mat3.rotateX(rotX), v)
-          p = mat3.mul(mat3.rotateZ(rotZ), p)
+          let p: Vert3 = mat3.mul(mat3.rotateX(rotX), v) as Vert3
+          p = mat3.mul(mat3.rotateZ(rotZ), p) as Vert3
           return tf(
             p,
             c.pos[0] * boardScale/2 + dx,
