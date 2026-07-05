@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="170" height="50" viewBox="0 0 170 50">
+  <defs>
+    <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <text fill="url(#lg)" xml:space="preserve" x="0" y="32" font-size="36" font-family="'CalligraphyRegular', 'Great Vibes', 'Alex Brush', cursive" font-weight="700">P</text>
+  <text fill="url(#lg)" xml:space="preserve" x="38" y="30" font-size="30" font-family="'SerathineDemo', 'Dancing Script', 'Allura', cursive" font-weight="600">ugliese</text>
+  <!-- Decorative underline flourish -->
+  <path d="M20 42 Q50 38 80 42 Q110 46 140 41 Q155 39 165 42" stroke="url(#lg)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5"/>
+</svg>
