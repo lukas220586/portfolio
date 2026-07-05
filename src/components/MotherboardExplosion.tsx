@@ -49,7 +49,7 @@ const COMPS: Comp3D[] = [
   { x: 230, y: 100, z: 0, w: 15, h: 15, d: 3, color: '#10b981', label: 'AUDIO', type: 'chip', group: 0 },
 ]
 
-const TRACES: [number, number, number][][] = [
+const TRACES: [number, number][][] = [
   [[10,65],[30,65],[50,70],[80,70]],
   [[10,80],[30,80],[50,80],[80,75]],
   [[10,95],[30,95],[50,95],[80,80]],

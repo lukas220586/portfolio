@@ -78,7 +78,7 @@ export default function BrainGraph() {
     const ctx = canvas.getContext('2d')!
 
     let animId: number
-    let mouseX = 0, mouseY = 0
+    let mouseX = 0, _mouseY = 0
     const nodes: Node3D[] = rawNodes.map(n => ({
       ...n,
       x: (Math.random() - 0.5) * 400,
@@ -97,7 +97,7 @@ export default function BrainGraph() {
     window.addEventListener('resize', resize)
     const onMouse = (e: MouseEvent) => {
       mouseX = (e.clientX / canvas.width - 0.5) * 2
-      mouseY = (e.clientY / canvas.height - 0.5) * 2
+      _mouseY = (e.clientY / canvas.height - 0.5) * 2
     }
     window.addEventListener('mousemove', onMouse)
 
