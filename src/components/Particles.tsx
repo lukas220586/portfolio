@@ -11,10 +11,8 @@ export default function Particles() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
+    const canvas = canvasRef.current!
+    const ctx = canvas.getContext('2d')!
 
     let animId: number
     let mouse = { x: -9999, y: -9999 }

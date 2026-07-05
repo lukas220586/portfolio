@@ -71,10 +71,8 @@ export default function MotherboardExplosion() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    const c = canvasRef.current
-    if (!c) return
-    const ctx = c.getContext('2d')
-    if (!ctx) return
+    const c = canvasRef.current!
+    const ctx = c.getContext('2d')!
 
     let animId: number
     let progress = 0

@@ -8,11 +8,6 @@ const M = {
   mul: (m: number[], v: number[]) => [m[0]*v[0]+m[1]*v[1]+m[2]*v[2], m[3]*v[0]+m[4]*v[1]+m[5]*v[2], m[6]*v[0]+m[7]*v[1]+m[8]*v[2]],
 }
 
-function t3(v: number[], rx: number, ry: number, rz: number, tx=0, ty=0, tz=0): number[] {
-  let p=M.mul(M.rz(rz), v); p=M.mul(M.rx(rx), p); p=M.mul(M.ry(ry), p)
-  return [p[0]+tx, p[1]+ty, p[2]+tz]
-}
-
 function proj(x: number, y: number, z: number, W: number, H: number, fov=600) {
   const d=fov+z; if (d<1) return {x:W/2,y:H/2,s:0}
   const s=fov/d; return {x:x*s+W/2, y:y*s+H/2, s}
@@ -125,7 +120,7 @@ export default function ScrollExplosion() {
     window.addEventListener('scroll', onScroll, { passive: true })
 
     // ── burst particles at explosion ──
-    function burstParticles(cx: number, cy: number, cz: number, count: number, spread: number) {
+    function burstParticles(cx: number, cy: number, cz: number, count: number, _spread: number) {
       for (let i = 0; i < count; i++) {
         const theta = rand(0, Math.PI * 2)
         const phi = rand(-Math.PI / 2, Math.PI / 2)

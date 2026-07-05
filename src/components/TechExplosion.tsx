@@ -111,10 +111,8 @@ export default function TechExplosion() {
   const progressRef = useRef(0)
 
   useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
+    const canvas = canvasRef.current!
+    const ctx = canvas.getContext('2d')!
 
     let animId: number
     const mouse = { x: 0, y: 0 }
